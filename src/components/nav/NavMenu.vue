@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center w-16 p-4 gap-y-4 bg-t-purple600 border-none outline-none shadow-md shadow-gray-400 rounded">
+    <div class="flex flex-col h-min items-center w-16 p-4 gap-y-4 bg-t-purple600 border-none outline-none shadow-md shadow-gray-400 rounded">
         <div><SvgLogoLetterMark /></div>
         <NavButton value="notifications" @onClick="handleClick"><SvgBell /></NavButton>
         <NavButton value="playbooks" @onClick="handleClick"><SvgMap /></NavButton>
@@ -19,8 +19,8 @@
 
     const emit = defineEmits(['show']);
 
-    function handleClick(value:NavType) {
-       emit("show", value);
+    function handleClick(value: NavType, topOffset: number) {
+       emit("show", value, topOffset);
     }
 
 </script>

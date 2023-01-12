@@ -34,13 +34,13 @@
             totalTasks: 15,
             taskComplete: 5,
         },
-        {
-            id: "3",
-            title: "Advanced Care Planning",
-            content: "Discussing and formalizing an advanced care plan to support goal-concordant care.",
-            totalTasks: 10,
-            taskComplete: 5,
-        }
+        // { // Hiding due to scrollbar
+        //     id: "3",
+        //     title: "Advanced Care Planning",
+        //     content: "Discussing and formalizing an advanced care plan to support goal-concordant care.",
+        //     totalTasks: 10,
+        //     taskComplete: 5,
+        // }
     ]
 
     function getTaskCompletePercentage(item: Playbook){

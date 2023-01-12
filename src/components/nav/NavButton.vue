@@ -1,20 +1,21 @@
 <template>
-    <button @click="handleButtonClick">
+    <button ref="buttonRef" @click="handleButtonClick">
         <slot />
     </button>
 </template>
 
 <script setup lang="ts">
-    import { PropType } from "vue";
+    import { PropType, ref } from "vue";
 import { NavType} from "./types";
-
+    const buttonRef = ref<HTMLElement>();
     const props = defineProps({ value: {
-        type: Object as PropType<NavType>,
+        type: String as PropType<NavType>,
         required: true
     }});    
     const emit = defineEmits(['onClick']);
 
     function handleButtonClick() {
-        emit('onClick', props.value);
+        const top = buttonRef.value?.getBoundingClientRect().top;
+        emit('onClick', props.value, top);
     }
 </script>
