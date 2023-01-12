@@ -11,7 +11,7 @@
                 {{ getTaskCompletePercentage(item) }}%
             </div>
             <div class="z-10 w-full h-[3px] rounded-lg bg-t-neutrals300">
-                <div :class="'w-[' + getTaskCompletePercentage(item) + '%] h-[3px] rounded-lg bg-t-green600'" />
+                <div :style="{width: getTaskCompletePercentage(item) + '%'}" class="h-[3px] rounded-lg bg-t-green600" />
             </div>
         </div>
     </div>

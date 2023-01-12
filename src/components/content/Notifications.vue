@@ -1,12 +1,13 @@
 <template>
     <ContentWrapper header="Notifications from Thyme Care">
-        <ul>
+        <ul class="list-disc ml-6 flex flex-col gap-y-2">
             <li v-for="item in notificationItems" class="list-item">
-                <div class="text-xs text-t-neutrals600">
+                <div class="text-sm font-medium">{{ item.title }}</div>
+                <div class="text-[10px] text-t-neutrals600">
                     <span>from </span>
                     <span class="text-t-purple600 underline">{{ item.playbookUrl }}</span>
                 </div>
-                
+                <div class="text-[10px] italic text-t-neutrals600">{{ item.status }}</div>
             </li>
         </ul>
     </ContentWrapper>
