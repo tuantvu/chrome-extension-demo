@@ -15,6 +15,7 @@
       "type": "module"
     },
     "permissions": [
+      "tabs",
       "activeTab",
       "scripting"
     ],

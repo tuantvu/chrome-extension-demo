@@ -1,64 +1,16 @@
-// export {};
-
-// chrome.action.setPopup({ popup: "index.html" });
-
-// chrome.action.onClicked.addListener((tab) => {
-//   // console.log("hI   ");
-//   if (tab.id) {
-//     chrome.scripting.executeScript({
-//       target: { tabId: tab.id },
-//       files: ["../src/content.ts"],
-//     });
-//   }
-// });
-
-function getTitle() {
-  // console.log("document.title", document.title);
-  // return document.title;
-
-  // const modal = document.createElement("dialog");
-  // modal.setAttribute(
-  //   "style",
-  //   `
-  //   height:100%;
-  //   width:100%;
-  //   margin:0px;
-  //   padding:0px;
-  //   border:none;
-  //   position:absolute;
-  //   right:0px;
-  //   background-color:transparent;
-  //   `
-  // );
-  // modal.setAttribute(
-  //   "style",
-  //   `
-  //     height:450px;
-  //     border: none;
-  //     top:150px;
-  //     border-radius:20px;
-  //     background-color:white;
-  //     position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
-  //     `
-  // );
-  // modal.innerHTML = `<iframe id="popup-content"; style="height:100%;width:100%"frameBorder="0"></iframe>`;
-
-  // document.body.appendChild(modal);
-  // const dialog = document.querySelector("dialog");
-
-  // dialog.showModal();
-
+function showPopup() {
+  // Inject IFrame with styles.
   const modal = document.createElement("iframe");
   modal.setAttribute(
     "style",
     `
       height:500px;
-      width:500px;
+      width:390px;
       margin:0px;
       padding:0px;
       border:none;
       position:fixed;
-      right:5px;
+      right:20px;
       top:5px;
       z-index:100000;
       display:block;
@@ -69,14 +21,27 @@ function getTitle() {
   modal.setAttribute("id", "thyme-care-demo-extension");
   modal.setAttribute("src", chrome.runtime.getURL("index.html"));
   document.body.appendChild(modal);
-  // const iframe = document.getElementById("popup-content");
-  // console.log("iframe", iframe);
-  // iframe.src = chrome.runtime.getURL("index.html");
-  // iframe.frameBorder = 0;
 
-  // console.log("iframe", iframe);
-
-  return "returned something";
+  // Listener to close the IFrame on click outside. The IFrame absorbs
+  // touch events, so any events that hit the "document" is outside of its
+  // boundaries.
+  //
+  // IMPROVEME - If the user clicks on the empty space around the IFrame
+  // contents, but still within the IFrame boundaries, it will not close,
+  // so that may confuse the user. A solution could be to detect clicks
+  // within the Vue code and if it doesn't hit a component, send a message
+  // to a new background script listener to close the IFrame.
+  document.addEventListener(
+    "click",
+    function (e) {
+      const iframe = document.getElementById("thyme-care-demo-extension");
+      // console.log("document.addEventListener", iframe, e);
+      if (iframe) {
+        document.body.removeChild(iframe);
+      }
+    },
+    false
+  );
 }
 
 chrome.action.onClicked.addListener((tab) => {
@@ -85,20 +50,33 @@ chrome.action.onClicked.addListener((tab) => {
   console.log("srcUrl: ", srcUrl);
 
   if (tab.id) {
-    chrome.scripting.executeScript(
-      {
-        target: { tabId: tab.id },
-        func: getTitle,
-      },
-      (injectionResults) => {
-        for (const frameResult of injectionResults)
-          console.log("Frame Title: " + frameResult.result);
-      }
-    );
-    // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    //   console.log("chrome.tabs", tabs);
-    //   chrome.tabs.sendMessage(tabs[0].id, { type: "popup-modal" });
-    //   console.log("chrome.tabs.sendMessage", tabs[0].id);
-    // });
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: showPopup,
+    });
   }
 });
+
+// Sets the badge text and color
+function setBadge(text) {
+  chrome.action.setBadgeBackgroundColor(
+    { color: "#EC301B" } // Chrome automatically decides text color based on background color
+  );
+  chrome.action.setBadgeText({
+    text,
+  });
+}
+
+chrome.runtime.onInstalled.addListener(function (details) {
+  console.log("chrome.runtime.onInstalled", details);
+  setBadge("1");
+});
+
+// Display a badge when a browser window is created
+chrome.windows.onCreated.addListener(
+  function (window) {
+    console.log("chrome.windows.onCreated", window);
+    setBadge("3");
+  },
+  { windowTypes: ["normal"] }
+);
