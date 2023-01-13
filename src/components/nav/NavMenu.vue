@@ -4,7 +4,7 @@
         <NavButton value="notifications" @onClick="handleClick" :badgeValue=2><SvgBell /></NavButton>
         <NavButton value="playbooks" @onClick="handleClick"><SvgMap /></NavButton>
         <NavButton value="timeline" @onClick="handleClick"><SvgCalendarDays /></NavButton>
-        <NavButton value="profile" @onClick="handleClick"><SvgClipBoard /></NavButton>
+        <NavButton value="profile" @onClick="handleProfileClick"><SvgClipBoard /></NavButton>
     </div>
 </template>
 
@@ -17,10 +17,15 @@
     import NavButton from "./NavButton.vue";
     import NavType from "./types";
 
-    const emit = defineEmits(['show']);
+    const emit = defineEmits(['show', 'showProfile']);
 
     function handleClick(value: NavType, topOffset: number) {
-       emit("show", value, topOffset);
+        emit("show", value, topOffset);
+    }
+
+    function handleProfileClick(value: NavType, topOffset: number) {
+        handleClick(value, topOffset);
+        emit("showProfile");
     }
 
 </script>
