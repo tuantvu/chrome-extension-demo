@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
     import { PropType } from 'vue';
-    import { NavType } from '../nav/types';
+    import NavType from '../nav/types';
     import Notifications from './Notifications.vue';
     import Playbooks from "./Playbooks.vue";
     import Timeline from './Timeline.vue';

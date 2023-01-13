@@ -8,12 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "primeicons": "^6.0.1",
-    "primevue": "^3.22.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
+    "@types/chrome": "^0.0.208",
     "@vitejs/plugin-vue": "^2.3.4",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",

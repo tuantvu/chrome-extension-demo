@@ -1,6 +1,5 @@
 <template>
-    <div class="flex flex-col p-4 gap-y-2 border-2 border-t-purple200 rounded">
-        <div class="text-base font-bold">Thyme Care Support Playbooks</div>
+    <ContentWrapper header="Thyme Care Support Playbooks">
         <div v-for="item in playbookItems" class="border rounded p-4">
             <div class="text-sm font-bold">{{ item.title }}</div>
             <div class="text-xs mt-1">{{ item.content }}</div>
@@ -14,11 +13,13 @@
                 <div :style="{width: getTaskCompletePercentage(item) + '%'}" class="h-[3px] rounded-lg bg-t-green600" />
             </div>
         </div>
-    </div>
+    </ContentWrapper>
 </template>
 
 <script setup lang="ts">
     import Playbook from "../../models/playbook";
+    import ContentWrapper from "./ContentWrapper.vue";
+
     const playbookItems: Playbook[] = [
         {
             id: "1",

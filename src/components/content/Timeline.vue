@@ -22,7 +22,6 @@
 <script setup lang="ts">
     import ContentWrapper from './ContentWrapper.vue';
     import Touchpoint from "../../models/touchpoint";
-    import SvgAssignment from '../svg/SvgAssignment.vue';
     import TimelineIcon from './TimelineIcon.vue';
 
     const touchpointItems: Touchpoint[] = [

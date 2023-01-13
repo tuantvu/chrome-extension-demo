@@ -15,7 +15,7 @@
     import SvgClipBoard from "../svg/SvgClipBoard.vue";
     import SvgMap from "../svg/SvgMap.vue";
     import NavButton from "./NavButton.vue";
-    import { NavType } from "./types";
+    import NavType from "./types";
 
     const emit = defineEmits(['show']);
 

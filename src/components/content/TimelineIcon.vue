@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-    import TouchPoint from 'src/models/touchpoint';
+    import TouchPoint from '../../models/touchpoint';
     import { computed, defineAsyncComponent, PropType } from 'vue';
 
     const props = defineProps({item: {

@@ -8,6 +8,18 @@
         "24": "public/thyme_care_favicon24.png",
         "32": "public/thyme_care_favicon32.png"
       },
-      "default_popup": "index.html"
-    }
+      "default_title": "Click to alert"
+    },
+    "background": {
+      "service_worker": "src/background.js",
+      "type": "module"
+    },
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "web_accessible_resources": [{
+      "resources": ["*.html"],
+      "matches": ["https://*/*", "http://*/*"]
+    }]
   }

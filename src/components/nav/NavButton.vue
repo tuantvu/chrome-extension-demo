@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
     import { PropType, ref } from "vue";
-import { NavType} from "./types";
-    const buttonRef = ref<HTMLElement>();
+import NavType from "./types";
+    const buttonRef = ref<any>();
     const props = defineProps({ value: {
         type: String as PropType<NavType>,
         required: true
