@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col h-min items-center w-16 p-4 gap-y-4 bg-t-purple600 border-none outline-none shadow-md shadow-gray-400 rounded">
         <div><SvgLogoLetterMark /></div>
-        <NavButton value="notifications" @onClick="handleClick"><SvgBell /></NavButton>
+        <NavButton value="notifications" @onClick="handleClick" :badgeValue=2><SvgBell /></NavButton>
         <NavButton value="playbooks" @onClick="handleClick"><SvgMap /></NavButton>
         <NavButton value="timeline" @onClick="handleClick"><SvgCalendarDays /></NavButton>
         <NavButton value="profile" @onClick="handleClick"><SvgClipBoard /></NavButton>

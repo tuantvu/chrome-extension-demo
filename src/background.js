@@ -69,14 +69,14 @@ function setBadge(text) {
 
 chrome.runtime.onInstalled.addListener(function (details) {
   console.log("chrome.runtime.onInstalled", details);
-  setBadge("1");
+  setBadge("2");
 });
 
 // Display a badge when a browser window is created
 chrome.windows.onCreated.addListener(
   function (window) {
     console.log("chrome.windows.onCreated", window);
-    setBadge("3");
+    setBadge("2");
   },
   { windowTypes: ["normal"] }
 );

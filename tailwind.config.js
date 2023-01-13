@@ -14,6 +14,7 @@ module.exports = {
         "t-orange": "#D64E3E",
         "t-purple200": "#F3E0EC",
         "t-purple600": "#803663",
+        "t-red600": "#EC6555",
       },
     },
   },
